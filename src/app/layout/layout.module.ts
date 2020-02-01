@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import {
     MatButtonModule,
     MatIconModule,
@@ -7,7 +9,8 @@ import {
     MatListModule,
     MatMenuModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -16,6 +19,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 import { Screen2Component } from './screen2/screen2.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 @NgModule({
     imports: [
@@ -25,12 +29,16 @@ import { Screen2Component } from './screen2/screen2.component';
         MatButtonModule,
         MatSidenavModule,
         MatIconModule,
+        MatFormFieldModule,
         MatInputModule,
         MatMenuModule,
         MatListModule,
-        TranslateModule
+        TranslateModule,
+        FlexLayoutModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
-    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, ]
+    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, CreateUserComponent, ]
 
 })
 export class LayoutModule { }

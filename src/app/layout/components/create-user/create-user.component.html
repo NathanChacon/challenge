@@ -1,0 +1,17 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <form class="m-userForm" fxLayout="column" (ngSubmit)="onSubmit()" [formGroup] = "userForm">
+    <mat-form-field floatLabel= "always">
+      <mat-label>Nome Usuário</mat-label>
+      <input matInput required formControlName="name">
+      <mat-error *ngIf="userForm.get('name').hasError('required')">Este campo é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field floatLabel= "always">
+      <mat-label>Emprego</mat-label>
+      <input matInput required formControlName="job">
+      <mat-error *ngIf="userForm.get('job').hasError('required')">Este campo é obrigatório</mat-error>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="!userForm.valid" mat-raised-button color="primary" class="w-100">Cadastrar</button>
+  </form>
+</div>

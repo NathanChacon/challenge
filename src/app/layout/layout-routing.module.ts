@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
 import { Screen1Component } from './screen1/screen1.component';
-import { Screen2Component } from './screen2/screen2.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 const routes: Routes = [
     {
@@ -23,8 +23,8 @@ const routes: Routes = [
                 loadChildren: './screen1/screen1.module#Screen1Module'
             },
             {
-                path: 'screen2',
-                component: Screen2Component
+                path: 'create-user',
+                component: CreateUserComponent
             }
         ]
     }
