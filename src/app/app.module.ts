@@ -6,7 +6,8 @@ import {
     MatIconModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 import { BrowserModule,Title} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,6 +39,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         LayoutModule,
         OverlayModule,
         HttpClientModule,
+        MatProgressSpinnerModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,

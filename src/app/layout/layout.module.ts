@@ -10,7 +10,8 @@ import {
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatProgressSpinnerModule
 } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -19,7 +20,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 import { Screen2Component } from './screen2/screen2.component';
-import { CreateUserComponent } from './components/create-user/create-user.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
     imports: [
@@ -33,12 +35,13 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
         MatInputModule,
         MatMenuModule,
         MatListModule,
+        MatProgressSpinnerModule,
         TranslateModule,
         FlexLayoutModule,
         FormsModule,
         ReactiveFormsModule
     ],
-    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, CreateUserComponent, ]
+    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, RegisterComponent, SpinnerComponent, ]
 
 })
 export class LayoutModule { }
