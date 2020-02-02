@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import {UserService} from '../services/user.service'
 import {Client} from '../client'
 import {FormControl, Validators} from '@angular/forms'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -18,7 +19,8 @@ export class UserListComponent implements OnInit {
   pageNumber:Number
   userId = new FormControl('',[Validators.required,Validators.min(0)])
   showSpinner: Boolean
-  constructor(private userService:UserService) { }
+
+  constructor(private userService:UserService,private router: Router) { }
 
   ngOnInit() {
     this.showSpinner = true
@@ -59,6 +61,10 @@ filterUsersById(){
       this.filteredClientError = true
     }  
   )
+}
+
+editUser(id: Number){
+    this.router.navigate([`edituser/${id}`])
 }
 
 hideSpinner(){

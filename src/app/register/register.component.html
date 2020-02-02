@@ -1,5 +1,5 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <form class="m-userForm" fxLayout="column" (ngSubmit)="onSubmit()" [formGroup] = "userForm">
+<section fxLayout="column" fxLayoutAlign="center center">
+  <form class="m-form" fxLayout="column" (ngSubmit)="onSubmit()" [formGroup] = "userForm">
     <mat-form-field floatLabel= "always">
       <mat-label>Nome Usuário</mat-label>
       <input matInput required formControlName="name">
@@ -19,4 +19,4 @@
      <span class="succes" *ngIf = "succes">Usuário registrado com sucesso !</span>
      <span class="fail" *ngIf = "fail">Ops ocorreu um problema :(</span>
   </div>
-</div> 
+</section> 

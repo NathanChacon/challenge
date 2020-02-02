@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,10 @@ export class UserService {
 
   getUserById(id:Number){
     return this.httpClient.get(this.url + `/${id}`)
+  }
+
+  updateUserById(id : Number ,job : String){
+    return this.httpClient.put(this.url + `/${id}`,{job: job})
   }
 
 }

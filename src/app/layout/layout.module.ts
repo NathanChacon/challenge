@@ -4,6 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import {RegisterModule} from '../register/register.module'
 import {UserListModule} from '../user-list/user-list.module'
+import {EditUserModule} from '../edit-user/edit-user.module'
 import {
     MatButtonModule,
     MatIconModule,
@@ -29,6 +30,7 @@ import { Screen2Component } from './screen2/screen2.component';
     imports: [
         CommonModule,
         RegisterModule,
+        EditUserModule,
         UserListModule,
         LayoutRoutingModule,
         MatToolbarModule,

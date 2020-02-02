@@ -4,6 +4,7 @@ import { UserListComponent } from './user-list.component';
 import {SpinnerModule} from '../spinner/spinner.module'
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {RouterModule,Route} from '@angular/router'
 import {
   MatButtonModule,
   MatIconModule,
@@ -18,6 +19,7 @@ import {
   declarations: [UserListComponent],
   imports: [
     FormsModule,
+    RouterModule,
     SpinnerModule,
     FlexLayoutModule,
     MatButtonModule,

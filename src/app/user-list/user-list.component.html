@@ -9,8 +9,8 @@
   <div class="m-filtered-user" *ngIf = "filteredClient">
     <mat-list-item *ngIf ="!filteredClientError">
       <img matListAvatar src= {{filteredClient.avatar}}>
-      <h3 mat-line>Name: {{filteredClient.first_name + " " + filteredClient.last_name}}</h3>
-      <p mat-line>id: {{filteredClient.id}}</p>
+      <h3 mat-line>Nome: {{filteredClient.first_name + " " + filteredClient.last_name}}</h3>
+      <p mat-line>id: {{filteredClient.id}} <button mat-button (click) = "editUser(filteredClient.id)">Editar</button> </p>
       <mat-divider></mat-divider>
     </mat-list-item>
     <span *ngIf ="filteredClientError">Não foi possivel encontrar este usuário</span>
@@ -19,8 +19,9 @@
   <mat-list >
     <mat-list-item *ngFor = "let client of clients">
       <img matListAvatar src= {{client.avatar}}>
-      <h3 mat-line>Name: {{client.first_name + " " + client.last_name}}</h3>
+      <h3 mat-line>Nome: {{client.first_name + " " + client.last_name}}</h3>
       <p mat-line>id: {{client.id}}</p>
+      <button mat-button (click) = "editUser(client.id)">Editar</button>
       <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>
