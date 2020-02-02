@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import {UserService} from '../../../services/user.service'
-import {Client} from '../../../client'
+import {UserService} from '../services/user.service'
+import {Client} from '../client'
 import {FormControl, Validators} from '@angular/forms'
 
 @Component({

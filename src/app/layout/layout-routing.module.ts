@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
 import { Screen1Component } from './screen1/screen1.component';
-import { RegisterComponent } from './components/register/register.component';
-import {UserListComponent} from './components/user-list/user-list.component';
+import {UserListComponent} from '../user-list/user-list.component';
+import {RegisterComponent} from '../register/register.component'
 const routes: Routes = [
     {
         path: '',
