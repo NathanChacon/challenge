@@ -1,0 +1,33 @@
+<section>
+    <form class="m-filter-form" (ngSubmit) = "filterUsersById()">
+      <mat-form-field>
+        <input matInput placeholder="Filtrar Por ID" type="number" [formControl] = "userId">
+      </mat-form-field>
+      <button type="submit" [disabled] = "!userId.valid" mat-raised-button color="primary">Filtrar</button>
+    </form>
+
+    <div class="m-filtered-user" *ngIf = "filteredClient">
+      <mat-list-item *ngIf ="!filteredClientError">
+        <img matListAvatar src= {{filteredClient.avatar}}>
+        <h3 mat-line>Name: {{filteredClient.first_name + " " + filteredClient.last_name}}</h3>
+        <p mat-line>id: {{filteredClient.id}}</p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+      <span *ngIf ="filteredClientError">Não foi possivel encontrar este usuário</span>
+    </div>
+
+    <mat-list >
+      <mat-list-item *ngFor = "let client of clients">
+        <img matListAvatar src= {{client.avatar}}>
+        <h3 mat-line>Name: {{client.first_name + " " + client.last_name}}</h3>
+        <p mat-line>id: {{client.id}}</p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+    
+    <div fxLayout = "row"  fxLayoutAlign="center center" class = "m-pagination">
+      <button mat-button *ngFor = "let id of buttons" #btnId id={{id}} (click) = "filterByPage(btnId)">{{id}}</button>
+    </div>
+
+    <app-spinner [isVisible] = "showSpinner"></app-spinner>
+</section>

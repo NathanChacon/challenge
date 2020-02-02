@@ -10,7 +10,6 @@ export class RegisterService {
   constructor(private httpClient: HttpClient) { }
 
   createPost(user:User){
-    console.log(user)
     return this.httpClient.post<User>('https://reqres.in/api/users)',user)
   }
 

@@ -34,6 +34,7 @@ export class RegisterComponent implements OnInit {
     this.registerService.createPost(this.user)
     .subscribe(
         (data) => {
+          console.log(data)
           this.showSpinner = false
           this.fail = false
           this.succes = true

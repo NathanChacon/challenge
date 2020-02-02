@@ -22,6 +22,7 @@ import { NavComponent } from './nav/nav.component';
 import { Screen2Component } from './screen2/screen2.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
     imports: [
@@ -41,7 +42,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
         FormsModule,
         ReactiveFormsModule
     ],
-    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, RegisterComponent, SpinnerComponent, ]
+    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, RegisterComponent, SpinnerComponent, UserListComponent, ]
 
 })
 export class LayoutModule { }
