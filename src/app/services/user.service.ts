@@ -25,4 +25,8 @@ export class UserService {
     return this.httpClient.put(this.url + `/${id}`,{job: job})
   }
 
+  deleteUserById(id : Number){
+    return this.httpClient.delete(this.url + `/${id}`)
+  }
+
 }

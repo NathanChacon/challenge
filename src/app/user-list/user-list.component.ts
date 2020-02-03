@@ -3,6 +3,8 @@ import {UserService} from '../services/user.service'
 import {Client} from '../client'
 import {FormControl, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
+import {DialogComponent} from './dialog/dialog.component'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-list',
@@ -20,18 +22,22 @@ export class UserListComponent implements OnInit {
   userId = new FormControl('',[Validators.required,Validators.min(0)])
   showSpinner: Boolean
 
-  constructor(private userService:UserService,private router: Router) { }
+  constructor(private userService:UserService,private router: Router,private dialog: MatDialog) { }
 
   ngOnInit() {
     this.showSpinner = true
-    this.userService.getUsers().subscribe(
-        (data: any) => {
-          this.hideSpinner()
-          this.clients = data.data
-          this.totalPages = data.total_pages
-          this.generateButton(this.totalPages)
-       }
-    )
+    this.getUsers()
+}
+
+getUsers(){
+  this.userService.getUsers().subscribe(
+    (data: any) => {
+      this.hideSpinner()
+      this.clients = data.data
+      this.totalPages = data.total_pages
+      this.generateButton(this.totalPages)
+   }
+)
 }
 
 generateButton(total:Number){
@@ -67,11 +73,41 @@ editUser(id: Number){
     this.router.navigate([`edituser/${id}`])
 }
 
-hideSpinner(){
-  setTimeout(() => {
-    this.showSpinner = false
-  },500)
+openDialog(id : Number){
+    const dialogRef = this.dialog.open(DialogComponent, {
+       width: '350px',
+       height:'200px'
+    });
+
+   dialogRef.afterClosed().subscribe(result => {
+       if(!result){
+           return
+      }     
+       this.deleteUser(id)
+  });
 }
 
+deleteUser(id : Number){
+    this.showSpinner = true
+    this.userService.deleteUserById(id)
+    .subscribe(
+      (data) => {
+        this.clients = this.clients.filter((client) => {
+          return client.id !== id
+        })
+        this.hideSpinner()
+      },
+      (error) => {
+        this.hideSpinner()
+        console.log('error')
+      }
+    )
+}
+
+hideSpinner(){
+    setTimeout(() => {
+       this.showSpinner = false
+    },500)
+}
 
 }

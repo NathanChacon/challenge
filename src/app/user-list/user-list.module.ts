@@ -12,11 +12,13 @@ import {
   MatInputModule,
   MatFormFieldModule,
   MatListModule,
+  MatDialogModule,
   MatProgressSpinnerModule
 } from '@angular/material';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
-  declarations: [UserListComponent],
+  declarations: [UserListComponent, DialogComponent],
   imports: [
     FormsModule,
     RouterModule,
@@ -24,6 +26,7 @@ import {
     FlexLayoutModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
     MatDividerModule,
@@ -31,6 +34,9 @@ import {
     MatListModule,
     ReactiveFormsModule,
     CommonModule
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   exports: [UserListComponent]
 })
