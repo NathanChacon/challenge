@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormGroup,FormBuilder,Validators} from '@angular/forms'
+import {MatDialog} from '@angular/material'
+import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import {Login} from '../login'
 import {AuthenticationService} from '../services/authentication.service'
 
@@ -12,12 +14,13 @@ import {AuthenticationService} from '../services/authentication.service'
 export class LoginComponent implements OnInit {
     loginForm:FormGroup
     loginData:Login
-    loginError:String
-    loginSucces:String
+    description:string
     email:string
     password:string
-    constructor(private router:Router, private fb:FormBuilder, private authenticationService:AuthenticationService) {}
+    showSpinner:boolean
 
+    constructor(private router:Router, private fb:FormBuilder, private authenticationService:AuthenticationService, public dialog: MatDialog) {}
+    
     ngOnInit() {
         this.loginForm = this.fb.group({
             email:['',[Validators.required,Validators.email]],
@@ -26,18 +29,38 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin() {
+      this.showSpinner = true
       this.email = this.loginForm.get('email').value
       this.password = this.loginForm.get('password').value   
       this.loginData = {email:this.email,password:this.password}
+
       this.authenticationService.login(this.loginData)
       .subscribe(
           (data:any) => {
+              this.hiddeSpinner()
               localStorage.setItem("token",data.token)
               this.router.navigate(["dashboard"])
           },
           (e) => {
-              this.loginError = e.error.error
+              this.hiddeSpinner()
+              this.description = e.error.error
+              this.openDialog(this.description)
+              e.error.error
           }
        )
+}
+
+    openDialog(description){
+        const dialogRef = this.dialog.open(MainDialogComponent, {
+        minWidth: '300px',
+        data: {description: description}
+        });
     }
+
+    hiddeSpinner(){
+        setTimeout(() => {
+            this.showSpinner = false
+        },500)
+    }
+
 }

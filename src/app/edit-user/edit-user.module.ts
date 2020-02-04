@@ -4,6 +4,7 @@ import { EditUserComponent } from './edit-user.component'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {SpinnerModule} from '../spinner/spinner.module'
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+import {MainDialogModule} from '../main-dialog/main-dialog.module'
 import {RouterModule,Route} from '@angular/router'
 import {
   MatButtonModule,
@@ -18,6 +19,7 @@ import {
   imports: [
     CommonModule,
     RouterModule,
+    MainDialogModule,
     FlexLayoutModule,
     SpinnerModule,
     FormsModule,

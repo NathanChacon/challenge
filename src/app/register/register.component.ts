@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl,FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import { FormBuilder } from '@angular/forms';
 import {User} from '../user'
 import {RegisterService} from '../services/register.service'
@@ -11,39 +13,51 @@ import {RegisterService} from '../services/register.service'
 export class RegisterComponent implements OnInit {
 
   userForm: FormGroup
+  description:string
   user: User
   showSpinner: Boolean = false
-  succes: Boolean = false
-  fail: Boolean = false
 
-  constructor(private fb: FormBuilder, private registerService: RegisterService) { 
+  constructor(private fb: FormBuilder, private registerService: RegisterService, public dialog: MatDialog) { 
   }
 
-  ngOnInit() {
+ngOnInit(){
     this.userForm = this.fb.group({
       name: ['',[Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/)]],
       job:['', [Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/)]]
     })
-  }
+}
 
-
-
-  onSubmit() {
+onSubmit(){
     this.showSpinner = true
     this.user = this.userForm.value
     this.registerService.createPost(this.user)
     .subscribe(
-        (data) => {
+        (data:any) => {
           console.log(data)
-          this.showSpinner = false
-          this.fail = false
-          this.succes = true
+          this.hiddeSpiner()
+          this.description = `Usuario: ${data.name} | Cargo: ${data.job} registrado`
+          this.openDialog(this.description)
         },
-        error =>  {
-          this.showSpinner = false
-          this.succes = false
-          this.fail = true
+        (error) =>  {
+          console.log(error)
+          this.hiddeSpiner()
+          this.description = "Ocorreu algum erro durante o envio do formulário"
+          this.openDialog(this.description)
         }
     )
-  }
+}
+
+openDialog(description){
+  const dialogRef = this.dialog.open(MainDialogComponent, {
+    data: {description: description}
+  });
+}
+
+hiddeSpiner(){
+  setTimeout(() => {
+    this.showSpinner = false
+  },500)
+}
+
+
 }

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms'
 import {ActivatedRoute} from '@angular/router'
 import {UserService} from '../services/user.service'
+import {MatDialog} from '@angular/material/dialog';
+import {MainDialogComponent} from '../main-dialog/main-dialog.component'
+
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
@@ -10,14 +13,13 @@ import {UserService} from '../services/user.service'
 export class EditUserComponent implements OnInit {
   editUserForm : FormGroup
   userId : Number
-  userJob : String
+  userJob : string
+  description: string
   showSpinner : boolean
-  succes: boolean
-  fail: boolean
 
-  constructor(private fb: FormBuilder,private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private fb: FormBuilder,private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog) { }
 
-  ngOnInit() {
+ngOnInit() {
     this.showSpinner = true
     
     this.editUserForm = this.fb.group({
@@ -42,27 +44,33 @@ export class EditUserComponent implements OnInit {
     )
   }
 
-  onSubmit(){
+onSubmit(){
     this.showSpinner = true
     this.userJob = this.editUserForm.get('job').value
     this.userService.updateUserById(this.userId,this.userJob)
     .subscribe(
-      (data) => {
+      (data:any) => {
         this.hiddeSpinner()
-        this.fail = false
-        this.succes = true
+        this.description = `Emprego atualizado para ${data.job} com sucesso`
+        this.openDialog(this.description)
         console.log(data)
       },
       (error) => {
         this.hiddeSpinner()
-        this.succes = false
-        this.fail = true
+        this.description = "Ocorreu algum erro durante o envio do formulário"
+        this.openDialog(this.description)
         console.log(error)
       }
     )
   }
 
-  hiddeSpinner(){
+openDialog(description){
+    const dialogRef = this.dialog.open(MainDialogComponent, {
+       data: {description: description}
+    });
+}
+
+hiddeSpinner(){
     setTimeout(() => {
       this.showSpinner = false
     },500)

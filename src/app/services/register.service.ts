@@ -7,10 +7,11 @@ import {User} from '../user'
 })
 
 export class RegisterService {
+  url:string = 'https://reqres.in/api/users'
   constructor(private httpClient: HttpClient) { }
 
   createPost(user:User){
-    return this.httpClient.post<User>('https://reqres.in/api/users)',user)
+    return this.httpClient.post<User>(this.url,user)
   }
 
 }

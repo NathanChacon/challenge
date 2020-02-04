@@ -5,7 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
   providedIn: 'root'
 })
 export class UserService {
-  url = "https://reqres.in/api/users"
+  url:string = "https://reqres.in/api/users"
 
   constructor(private httpClient: HttpClient) { }
 
@@ -21,11 +21,11 @@ export class UserService {
     return this.httpClient.get(this.url + `/${id}`)
   }
 
-  updateUserById(id : Number ,job : String){
+  updateUserById(id:Number ,job:string){
     return this.httpClient.put(this.url + `/${id}`,{job: job})
   }
 
-  deleteUserById(id : Number){
+  deleteUserById(id:Number){
     return this.httpClient.delete(this.url + `/${id}`)
   }
 

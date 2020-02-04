@@ -5,6 +5,7 @@ import {SpinnerModule} from '../spinner/spinner.module'
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {RouterModule,Route} from '@angular/router'
+import { DialogComponent } from './dialog/dialog.component';
 import {
   MatButtonModule,
   MatIconModule,
@@ -15,7 +16,6 @@ import {
   MatDialogModule,
   MatProgressSpinnerModule
 } from '@angular/material';
-import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [UserListComponent, DialogComponent],

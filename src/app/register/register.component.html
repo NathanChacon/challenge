@@ -1,4 +1,4 @@
-<section fxLayout="column" fxLayoutAlign="center center">
+<section class="h-100" fxLayout="row" fxLayoutAlign="center center">
   <form class="m-form" fxLayout="column" (ngSubmit)="onSubmit()" [formGroup] = "userForm">
     <mat-form-field floatLabel= "always">
       <mat-label>Nome Usuário</mat-label>
@@ -15,8 +15,4 @@
     <button type="submit" [disabled]="!userForm.valid" mat-raised-button color="primary" class="w-100">Cadastrar</button>
     <app-spinner [isVisible] = "showSpinner"></app-spinner>
   </form>
-  <div class="m-messages">
-     <span class="succes" *ngIf = "succes">Usuário registrado com sucesso !</span>
-     <span class="danger" *ngIf = "fail">Ops ocorreu um problema :(</span>
-  </div>
 </section> 
