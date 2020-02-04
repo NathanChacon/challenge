@@ -1,6 +1,7 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import {
     MatButtonModule,
     MatIconModule,
@@ -48,7 +49,7 @@ export const createTranslateLoader = (http: HttpClient) => {
             }
         })
     ],
-    providers: [Title],
+    providers: [Title,{provide: JWT_OPTIONS, useValue: JWT_OPTIONS },JwtHelperService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

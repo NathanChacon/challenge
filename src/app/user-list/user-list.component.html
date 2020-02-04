@@ -13,7 +13,7 @@
       <p mat-line>
         id: {{filteredClient.id}}
         <button mat-button (click) = "editUser(filteredClient.id)">Editar</button>
-        <button mat-button>Excluir</button>
+        <button mat-button class="danger" (click) = "openDialog(filteredClient.id)">Excluir</button>
       </p>
       <mat-divider></mat-divider>
     </mat-list-item>
