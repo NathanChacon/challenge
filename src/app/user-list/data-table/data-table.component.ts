@@ -25,12 +25,19 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit() {
     this.showSpinner = true
+    this.getUsers()
+  }
+
+  getUsers(){
     this.userService.getUsers()
     .subscribe(
       (data:any) => {
         this.hiddeSpinner()
         this.dataSource = new MatTableDataSource(data.data)
         this.dataSource.paginator = this.paginator;
+        this.dataSource.filterPredicate = function(data, filter: string): boolean {
+          return data.first_name.toLowerCase().includes(filter) || data.id.toString() === filter;
+        };
       }
     )
   }
@@ -40,10 +47,7 @@ export class DataTableComponent implements OnInit {
   }
 
   openDeleteDialog(id:Number){
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '350px',
-      height:'200px'
-    });
+    const dialogRef = this.dialog.open(DeleteDialogComponent)
 
     dialogRef.afterClosed().subscribe(result => {
       if(!result){
@@ -72,6 +76,7 @@ export class DataTableComponent implements OnInit {
   }
 
   applyFilter(filterValue: string) {
+    console.log(filterValue)
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
