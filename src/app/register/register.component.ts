@@ -4,7 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import { FormBuilder } from '@angular/forms';
 import {User} from '../user'
-import {RegisterService} from '../services/register.service'
+import {RegisterService} from '../services/register/register.service'
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,8 +22,8 @@ export class RegisterComponent implements OnInit {
 
 ngOnInit(){
     this.userForm = this.fb.group({
-      name: ['',[Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/)]],
-      job:['', [Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/)]]
+      name: ['',[Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/),Validators.pattern(/^[A-Za-z]+$/)]],
+      job:['', [Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/),Validators.pattern(/^[A-Za-z]+$/)]]
     })
 }
 

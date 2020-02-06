@@ -4,7 +4,7 @@ import {FormGroup,FormBuilder,Validators} from '@angular/forms'
 import {MatDialog} from '@angular/material'
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import {Login} from '../login'
-import {AuthenticationService} from '../services/authentication.service'
+import {AuthenticationService} from '../services/authentication/authentication.service'
 
 @Component({
     selector: 'app-login',

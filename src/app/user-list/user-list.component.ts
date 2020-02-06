@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core'
-import {UserService} from '../services/user.service'
+import {UserService} from '../services/user/user.service'
 import {Client} from '../client'
 import {FormControl, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
-import {DialogComponent} from './dialog/dialog.component'
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component'
+import {MainDialogComponent} from '../main-dialog/main-dialog.component'
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-list',
@@ -16,11 +17,12 @@ export class UserListComponent implements OnInit {
   clients : Client[]
   filteredClient:Client
   filteredClientError: Boolean = false
+  showSpinner: Boolean
   totalPages: Number
   buttons : Number[] = []
   pageNumber:Number
+  description:string
   userId = new FormControl('',[Validators.required,Validators.min(0)])
-  showSpinner: Boolean
 
   constructor(private userService:UserService,private router: Router,private dialog: MatDialog) { }
 
@@ -73,8 +75,36 @@ export class UserListComponent implements OnInit {
     this.router.navigate([`edituser/${id}`])
   }
 
-  openDialog(id : Number){
-    const dialogRef = this.dialog.open(DialogComponent, {
+  deleteUser(id : Number){
+    this.showSpinner = true
+    this.userService.deleteUserById(id)
+    .subscribe(
+      (data) => {
+        this.filterList(id)
+        this.hideSpinner()
+        this.description = "Usuário deletado com sucesso"
+        this.openDialog(this.description)
+      },
+      (error) => {
+        this.hideSpinner()
+        this.description = "Ocorreu um erro"
+        this.openDialog(this.description)
+      }
+    )
+  }
+
+  filterList(id:Number){
+    if(id === this.filteredClient.id){
+      this.filteredClientError = true
+    }
+    
+    this.clients = this.clients.filter((client) => {
+      return client.id !== id
+    })
+  }
+
+  openDeleteDialog(id : Number){
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '350px',
       height:'200px'
     });
@@ -87,21 +117,11 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  deleteUser(id : Number){
-    this.showSpinner = true
-    this.userService.deleteUserById(id)
-    .subscribe(
-      (data) => {
-        this.clients = this.clients.filter((client) => {
-          return client.id !== id
-        })
-        this.hideSpinner()
-      },
-      (error) => {
-        this.hideSpinner()
-        console.log('error')
-      }
-    )
+  openDialog(description:string){
+    this.dialog.open(MainDialogComponent,{
+      data:{description:description}
+    })
+
   }
 
   hideSpinner(){
@@ -109,5 +129,4 @@ export class UserListComponent implements OnInit {
       this.showSpinner = false
     },500)
   }
-
 }

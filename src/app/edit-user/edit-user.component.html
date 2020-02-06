@@ -9,6 +9,7 @@
       <mat-label>Emprego</mat-label>
       <input matInput required formControlName="job">
       <mat-error *ngIf="editUserForm.get('job').hasError('required')">Este campo é obrigatório</mat-error>
+      <mat-error *ngIf="editUserForm.get('job').hasError('pattern')">Emprego inválido</mat-error>
     </mat-form-field>
   
     <button type="submit" [disabled]="!editUserForm.valid" mat-raised-button color="primary" class="w-100">Editar</button>

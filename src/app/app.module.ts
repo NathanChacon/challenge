@@ -1,13 +1,17 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
+import {MainDialogModule} from './main-dialog/main-dialog.module'
+import {MainDialogComponent} from './main-dialog/main-dialog.component'
 import {
     MatButtonModule,
     MatIconModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatDialog
 } from '@angular/material';
 import { BrowserModule,Title} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -39,7 +43,9 @@ export const createTranslateLoader = (http: HttpClient) => {
         LayoutModule,
         OverlayModule,
         HttpClientModule,
+        MatDialogModule,
         MatProgressSpinnerModule,
+        MainDialogModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -48,6 +54,7 @@ export const createTranslateLoader = (http: HttpClient) => {
             }
         })
     ],
+    entryComponents:[MainDialogComponent],
     providers: [Title],
     bootstrap: [AppComponent]
 })

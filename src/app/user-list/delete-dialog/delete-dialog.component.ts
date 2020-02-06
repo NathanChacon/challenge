@@ -1,14 +1,14 @@
 import { Component, OnInit,Inject } from '@angular/core'
 import {MAT_DIALOG_DATA} from '@angular/material/dialog'
-import {UserService} from '../../services/user.service'
+import {UserService} from '../../services/user/user.service'
 import { error } from 'protractor'
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  templateUrl: './delete-dialog.component.html',
+  styleUrls: ['./delete-dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class DeleteDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 

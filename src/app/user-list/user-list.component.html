@@ -10,11 +10,11 @@
     <mat-list-item *ngIf ="!filteredClientError">
       <img matListAvatar src= {{filteredClient.avatar}}>
       <h3 mat-line>Nome: {{filteredClient.first_name + " " + filteredClient.last_name}}</h3>
-      <p mat-line>
+      <span mat-line>
         id: {{filteredClient.id}}
         <button mat-button (click) = "editUser(filteredClient.id)">Editar</button>
-        <button mat-button class="danger" (click) = "openDialog(filteredClient.id)">Excluir</button>
-      </p>
+        <button mat-button class="danger" (click) = "openDeleteDialog(filteredClient.id)">Excluir</button>
+      </span>
       <mat-divider></mat-divider>
     </mat-list-item>
     <span *ngIf ="filteredClientError">Não foi possivel encontrar este usuário</span>
@@ -26,7 +26,7 @@
       <h3 mat-line>Nome: {{client.first_name + " " + client.last_name}}</h3>
       <p mat-line>id: {{client.id}}</p>
       <button mat-button (click) = "editUser(client.id)">Editar</button>
-      <button mat-button class="danger" (click) = "openDialog(client.id)" >Excluir</button>
+      <button mat-button class="danger" (click) = "openDeleteDialog(client.id)" >Excluir</button>
       <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>

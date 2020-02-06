@@ -8,7 +8,7 @@
             <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
                 <div fxFlexFill>
                     <mat-form-field class="w-100">
-                        <input matInput formControlName="email" placeholder="Email">
+                        <input matInput formControlName="email" placeholder="E-mail">
                         <mat-error *ngIf = "loginForm.get('email').hasError('required')">Este campo é obrigatório</mat-error>
                         <mat-error *ngIf = "loginForm.get('email').hasError('email')">Email inválido</mat-error>
                     </mat-form-field>

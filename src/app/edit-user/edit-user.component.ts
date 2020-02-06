@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms'
 import {ActivatedRoute} from '@angular/router'
-import {UserService} from '../services/user.service'
+import {UserService} from '../services/user/user.service'
 import {MatDialog} from '@angular/material/dialog';
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 
@@ -11,6 +11,7 @@ import {MainDialogComponent} from '../main-dialog/main-dialog.component'
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
+  
   editUserForm : FormGroup
   userId : Number
   userJob : string
@@ -24,7 +25,7 @@ ngOnInit() {
     
     this.editUserForm = this.fb.group({
       name: new FormControl({ value: '', disabled:true }),
-      job:['', [Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/)]]
+      job:['', [Validators.required,Validators.pattern(/^((?!\s{2,}).)*$/),Validators.pattern(/^[A-Za-z]+$/)]]
    })
 
     this.route.params.subscribe(res =>  {
