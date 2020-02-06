@@ -11,7 +11,7 @@ import {
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatDialog
+    MatDialog, MatTableModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
 import { BrowserModule,Title} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 
 
 // AoT requires an exported function for factories
@@ -52,7 +53,10 @@ export const createTranslateLoader = (http: HttpClient) => {
                 useFactory: createTranslateLoader,
                 deps: [HttpClient]
             }
-        })
+        }),
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule
     ],
     entryComponents:[MainDialogComponent],
     providers: [Title],

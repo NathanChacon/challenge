@@ -16,11 +16,13 @@ import {
   MatFormFieldModule,
   MatListModule,
   MatDialogModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatTableModule, MatPaginatorModule, MatSortModule
 } from '@angular/material';
+import { DataTableComponent } from './data-table/data-table.component';
+
 
 @NgModule({
-  declarations: [UserListComponent, DeleteDialogComponent],
+  declarations: [UserListComponent, DeleteDialogComponent, DataTableComponent],
   imports: [
     FormsModule,
     RouterModule,
@@ -36,7 +38,10 @@ import {
     MatListModule,
     ReactiveFormsModule,
     MainDialogModule,
-    CommonModule
+    CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   entryComponents: [
     DeleteDialogComponent
