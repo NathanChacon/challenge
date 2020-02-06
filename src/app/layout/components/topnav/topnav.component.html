@@ -6,20 +6,9 @@
         Desafio Web - Angular
     </div>
     <span class="nav-spacer"></span>
-    <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="language">
-        <mat-icon>language</mat-icon>
-    </button>
-    <mat-menu #language="matMenu">
-        <button mat-menu-item (click)="changeLang('en')">
-            <span>{{ 'English' | translate }}</span>
-        </button>
-        <button mat-menu-item (click)="changeLang('fr')">
-            <span>{{ 'French' | translate }}</span>
-        </button>
-        <button mat-menu-item (click)="changeLang('ur')">
-            <span>{{ 'Urdu' | translate }}s</span>
-        </button>
-    </mat-menu>
+    <a mat-icon-button [routerLink]="['/login']">
+        <mat-icon>account_circle</mat-icon>
+    </a>
     <button mat-icon-button (click)="onLoggedout()">
         <mat-icon>exit_to_app</mat-icon>
     </button>

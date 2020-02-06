@@ -4,7 +4,7 @@ import { LayoutComponent } from './layout.component'
 import {UserListComponent} from '../user-list/user-list.component'
 import {RegisterComponent} from '../register/register.component'
 import {EditUserComponent} from '../edit-user/edit-user.component'
-
+import { AuthGuardService } from '../services/authGuard/auth-guard.service';
 const routes: Routes = [
     {
         path: '',
@@ -21,14 +21,17 @@ const routes: Routes = [
             {
                 path: 'userlist',
                 component: UserListComponent,
+                canActivate: [AuthGuardService]
             },
             {
                 path: 'register',
                 component: RegisterComponent,
+                canActivate: [AuthGuardService]
             },
             {
                 path: 'edituser/:id',
                 component: EditUserComponent,
+                canActivate: [AuthGuardService]
             }
         ]
     }
@@ -37,5 +40,6 @@ const routes: Routes = [
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
+    providers:[AuthGuardService]
 })
 export class LayoutRoutingModule {}

@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuardService } from './services/authGuard/auth-guard.service';
+
 
 const routes: Routes = [
     {
         path: '',
-        loadChildren: './layout/layout.module#LayoutModule',
-        canActivate: [AuthGuardService]
+        loadChildren: './layout/layout.module#LayoutModule'
     },
     {
         path: 'login',
         loadChildren: './login/login.module#LoginModule'
-    }
+    },
+    {path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule],
-    providers: [AuthGuardService]
+    exports: [RouterModule]
 })
 export class AppRoutingModule {}
