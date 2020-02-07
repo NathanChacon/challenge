@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import {Client} from '../../client'
+import {Client} from '../../interfaces/client'
 import {UserService} from '../../services/user/user.service'
 import { Router } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';

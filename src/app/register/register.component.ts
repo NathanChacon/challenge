@@ -3,7 +3,7 @@ import {FormControl,FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import { FormBuilder } from '@angular/forms';
-import {User} from '../user'
+import {User} from '../interfaces/user'
 import {RegisterService} from '../services/register/register.service'
 @Component({
   selector: 'app-register',

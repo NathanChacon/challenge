@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import {UserService} from '../services/user/user.service'
-import {Client} from '../client'
+import {Client} from '../interfaces/client'
 import {FormControl, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import {DeleteDialogComponent} from './delete-dialog/delete-dialog.component'

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import {FormGroup,FormBuilder,Validators} from '@angular/forms'
 import {MatDialog} from '@angular/material'
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
-import {Login} from '../login'
+import {Login} from '../interfaces/login'
 import {AuthenticationService} from '../services/authentication/authentication.service'
 
 @Component({
