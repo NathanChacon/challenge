@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import {Client} from '../../interfaces/client'
+import {User} from '../../interfaces/user'
 import {UserService} from '../../services/user/user.service'
 import { Router } from '@angular/router';
 import {MatPaginator} from '@angular/material/paginator';
@@ -16,7 +16,7 @@ import {MainDialogComponent} from '../../main-dialog/main-dialog.component'
 export class DataTableComponent implements OnInit {
 
   displayedColumns: string[] = ['avatar','id', 'name','actions'];
-  dataSource:MatTableDataSource<Client>
+  dataSource:MatTableDataSource<User>
   showSpinner:boolean = false
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

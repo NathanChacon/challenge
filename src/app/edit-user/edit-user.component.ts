@@ -30,20 +30,24 @@ ngOnInit() {
 
     this.route.params.subscribe(res =>  {
         this.userId = res.id
+        this.getUserById()
     });
-
-    this.userService.getUserById(this.userId)
-    .subscribe(
-        (data: any) => {
-          this.hiddeSpinner()
-          this.editUserForm.setValue({name: data.data.first_name + " " + data.data.last_name , job:''})
-        },
-        (error) => {
-          this.hiddeSpinner()
-          console.log(error)
-        }
-    )
+    
   }
+
+getUserById(){
+  this.userService.getUserById(this.userId)
+  .subscribe(
+      (data: any) => {
+        this.hiddeSpinner()
+        this.editUserForm.setValue({name: data.data.first_name + " " + data.data.last_name , job:''})
+      },
+      (error) => {
+        this.hiddeSpinner()
+        console.log(error)
+      }
+  )
+}
 
 onSubmit(){
     this.showSpinner = true
@@ -70,6 +74,7 @@ openDialog(description){
        data: {description: description}
     });
 }
+
 
 hiddeSpinner(){
     setTimeout(() => {

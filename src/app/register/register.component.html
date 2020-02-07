@@ -1,20 +1,20 @@
 <section class="h-100" fxLayout="row" fxLayoutAlign="center center">
-  <form class="m-form" fxLayout="column" (ngSubmit)="onSubmit()" [formGroup] = "userForm">
+  <form class="m-form" fxLayout="column" (ngSubmit)="onSubmit()" [formGroup] = "registerForm">
     <mat-form-field floatLabel= "always">
       <mat-label>Nome Usuário</mat-label>
       <input type="text" matInput required formControlName="name">
-      <mat-error *ngIf="userForm.get('name').hasError('required')">Este campo é obrigatório</mat-error>
-      <mat-error *ngIf="userForm.get('name').hasError('pattern')">Nome inválido</mat-error>
+      <mat-error *ngIf="registerForm.get('name').hasError('required')">Este campo é obrigatório</mat-error>
+      <mat-error *ngIf="registerForm.get('name').hasError('pattern')">Nome inválido</mat-error>
     </mat-form-field>
 
     <mat-form-field floatLabel= "always">
       <mat-label>Emprego</mat-label>
       <input type="text" matInput required formControlName="job">
-      <mat-error *ngIf="userForm.get('job').hasError('required')">Este campo é obrigatório</mat-error>
-      <mat-error *ngIf="userForm.get('job').hasError('pattern')">Emprego inválido</mat-error>
+      <mat-error *ngIf="registerForm.get('job').hasError('required')">Este campo é obrigatório</mat-error>
+      <mat-error *ngIf="registerForm.get('job').hasError('pattern')">Emprego inválido</mat-error>
     </mat-form-field>
 
-    <button type="submit" [disabled]="!userForm.valid" mat-raised-button color="primary" class="w-100">Cadastrar</button>
+    <button type="submit" [disabled]="!registerForm.valid" mat-raised-button color="primary" class="w-100">Cadastrar</button>
     <app-spinner [isVisible] = "showSpinner"></app-spinner>
   </form>
 </section> 

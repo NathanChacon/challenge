@@ -52,3 +52,13 @@
 .w-100 {
     width: 100%;
 }
+
+@media screen and (max-width:960px){
+    .login-page {
+        .content {
+            .login-form {
+                width: 350px;
+            }
+        }
+    }
+}
