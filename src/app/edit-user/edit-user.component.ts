@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormControl,FormBuilder,Validators} from '@angular/forms'
+import { Component, OnInit, ViewChild} from '@angular/core';
+import {FormGroup,FormControl,FormBuilder,FormGroupDirective,Validators} from '@angular/forms'
 import {ActivatedRoute} from '@angular/router'
 import {UserService} from '../services/user/user.service'
 import {MatDialog} from '@angular/material/dialog';
@@ -19,6 +19,8 @@ export class EditUserComponent implements OnInit {
   showSpinner : boolean
 
   constructor(private fb: FormBuilder,private route: ActivatedRoute, private userService: UserService, public dialog: MatDialog) { }
+
+  @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
 
 ngOnInit() {
     this.showSpinner = true
@@ -55,12 +57,14 @@ onSubmit(){
     this.userService.updateUserById(this.userId,this.userJob)
     .subscribe(
       (data:any) => {
+        this.resetForm()
         this.hiddeSpinner()
         this.description = `Emprego atualizado para ${data.job} com sucesso`
         this.openDialog(this.description)
         console.log(data)
       },
       (error) => {
+        this.resetForm()
         this.hiddeSpinner()
         this.description = "Ocorreu algum erro durante o envio do formulário"
         this.openDialog(this.description)
@@ -73,6 +77,12 @@ openDialog(description){
     const dialogRef = this.dialog.open(MainDialogComponent, {
        data: {description: description}
     });
+}
+
+resetForm(){
+  const name =  this.editUserForm.get('name').value
+  this.formDirective.resetForm()
+  this.editUserForm.setValue({name:name,job:''})
 }
 
 

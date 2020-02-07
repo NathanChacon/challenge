@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl,FormGroup, Validators} from '@angular/forms';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import {FormControl,FormGroup,FormGroupDirective, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import { FormBuilder } from '@angular/forms';
@@ -10,6 +10,7 @@ import {RegisterService} from '../services/register/register.service'
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup
@@ -19,6 +20,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private registerService: RegisterService, public dialog: MatDialog) { 
   }
+
+  @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
 
 ngOnInit(){
     this.registerForm = this.fb.group({
@@ -34,12 +37,14 @@ onSubmit(){
     .subscribe(
         (data:any) => {
           console.log(data)
+          this.resetForm()
           this.hiddeSpiner()
           this.description = `Usuario: ${data.name} | Cargo: ${data.job} registrado`
           this.openDialog(this.description)
         },
         (error) =>  {
           console.log(error)
+          this.resetForm()
           this.hiddeSpiner()
           this.description = "Ocorreu algum erro durante o envio do formulário"
           this.openDialog(this.description)
@@ -51,6 +56,10 @@ openDialog(description){
   const dialogRef = this.dialog.open(MainDialogComponent, {
     data: {description: description}
   });
+}
+
+resetForm(){
+  this.formDirective.resetForm();
 }
 
 

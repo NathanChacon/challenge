@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormGroup,FormBuilder,Validators} from '@angular/forms'
+import {FormGroup,FormBuilder,FormGroupDirective,Validators} from '@angular/forms'
 import {MatDialog} from '@angular/material'
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import {Login} from '../interfaces/login'
@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit {
     showSpinner:boolean
 
     constructor(private router:Router, private fb:FormBuilder, private authenticationService:AuthenticationService, public dialog: MatDialog) {}
-    
+
+    @ViewChild(FormGroupDirective) formDirective: FormGroupDirective;
+
     ngOnInit() {
         this.loginForm = this.fb.group({
             email:['',[Validators.required,Validators.email]],
@@ -42,6 +44,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(["dashboard"])
           },
           (e) => {
+              this.resetForm()
               this.hiddeSpinner()
               this.description = e.error.error
               this.openDialog(this.description)
@@ -55,6 +58,10 @@ export class LoginComponent implements OnInit {
         minWidth: '300px',
         data: {description: description}
         });
+    }
+
+    resetForm(){
+        this.formDirective.resetForm()
     }
 
     hiddeSpinner(){
