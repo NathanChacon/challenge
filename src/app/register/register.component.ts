@@ -1,5 +1,5 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import {FormControl,FormGroup,FormGroupDirective, Validators} from '@angular/forms';
+import {FormGroup,FormGroupDirective, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {MainDialogComponent} from '../main-dialog/main-dialog.component'
 import { FormBuilder } from '@angular/forms';

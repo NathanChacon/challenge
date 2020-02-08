@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {SpinnerModule} from '../spinner/spinner.module'
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import {MainDialogModule} from '../main-dialog/main-dialog.module'
-import {MainDialogComponent} from '../main-dialog/main-dialog.component'
+
 import {
   MatButtonModule,
   MatIconModule,
