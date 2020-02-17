@@ -18,6 +18,9 @@ export class DataTableComponent implements OnInit {
   displayedColumns: string[] = ['avatar','id', 'name','actions'];
   dataSource:MatTableDataSource<User>
   showSpinner:boolean = false
+  length:Number
+  pageSize:Number = 6
+  currentPage:number = 0
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -25,21 +28,37 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit() {
     this.showSpinner = true
-    this.getUsers()
+    this.getTotalUsers()
   }
 
-  getUsers(){
+  getTotalUsers(){
     this.userService.getUsers()
-    .subscribe(
-      (data:any) => {
-        this.hiddeSpinner()
-        this.dataSource = new MatTableDataSource(data.data)
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.filterPredicate = function(data, filter: string): boolean {
-          return data.first_name.toLowerCase().includes(filter) || data.id.toString() === filter;
-        };
-      }
-    )
+    .subscribe((data:any) => {
+      this.length = data.total
+      this.getFirstUsers()
+    })
+  }
+
+  getFirstUsers(){
+    this.userService.getUsersByPage(this.currentPage + 1)
+    .subscribe((data:any) => {
+      this.hiddeSpinner()
+      this.dataSource = new MatTableDataSource(data.data)
+      this.dataSource.filterPredicate = function(data, filter: string): boolean {
+        return data.first_name.toLowerCase().includes(filter) || data.id.toString() === filter;
+      };
+    })
+  }
+
+  getUsersByPage(page:number){
+    this.userService.getUsersByPage(page)
+    .subscribe((data:any) => {
+      this.hiddeSpinner()
+      this.dataSource = new MatTableDataSource(data.data)
+      this.dataSource.filterPredicate = function(data, filter: string): boolean {
+        return data.first_name.toLowerCase().includes(filter) || data.id.toString() === filter;
+      };
+    })
   }
 
   editUser(id:Number){
@@ -89,6 +108,11 @@ export class DataTableComponent implements OnInit {
     this.dialog.open(MainDialogComponent,{
       data:{description:description}
     })
+  }
+
+  public handlePage(e: any) {
+    this.showSpinner = true
+    this.getUsersByPage(e.pageIndex + 1)
   }
 
   hiddeSpinner(){

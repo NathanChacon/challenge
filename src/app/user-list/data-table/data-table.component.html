@@ -30,7 +30,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[3, 6]" showFirstLastButtons></mat-paginator>
+  <mat-paginator #paginator [pageSize]="pageSize" [showFirstLastButtons] = "true" [length] = "length"
+    [pageIndex]="currentPage" (page)="pageEvent = handlePage($event)">
+</mat-paginator>
   <app-spinner [isVisible] = "showSpinner"></app-spinner>
 </div>
 
